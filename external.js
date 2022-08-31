@@ -32,28 +32,26 @@
 		return playerSelection;
 	}
 
-// //Sub-Problem 3
+//Sub-Problem 3
 
-// 	function playRound(playerSelection, computerSelection)	{
-// 		let counterComputer;
-// 		let counterPlayer;
+	function playRound(playerSelection, computerSelection)	{
+		let scoreComputer = 0;
+		let scorePlayer = 0;
 
-// 		playerSelection = getPlayerChoice();
-// 		computerSelection = getComputerChoice();
+		playerSelection = getPlayerChoice();
+		computerSelection = getComputerChoice();
 
-// 		console.log(playerSelection);
-// 		console.log(computerSelection);
+		console.log(playerSelection);
+		console.log(computerSelection);
 
-// 		if(playerSelection === 'Paper' && computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper' || playerSelection === 'Rock' && computerSelection === 'Scissors' )	{
-// 			counterPlayer ++;
-// 			console.log(`You won!!${playerSelection} beats ${computerSelection}.`);
-// 			console.log(counterPlayer);
-// 			console.log
-// 		}else if(playerSelection === computerSelection){
-// 			console.log('Draw. On to the next one.');
-// 		} else	{
-// 			counterComputer ++;
-// 			console.log(`$You lost! {playerSelection} lost against ${computerSelection}.`);
-// 		}
-// 	}
+		if(playerSelection === 'Paper' && computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper' || playerSelection === 'Rock' && computerSelection === 'Scissors' )	{
+			scorePlayer++;
+			console.log(`You won!!${playerSelection} beats ${computerSelection}.`);
+		}else if(playerSelection === computerSelection){
+			console.log('Draw. On to the next one.');
+		} else	{
+			scoreComputer++;
+			console.log(`$You lost! ${playerSelection} lost against ${computerSelection}.`);
+		}
+	}
 
