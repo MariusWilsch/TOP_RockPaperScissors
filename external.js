@@ -5,7 +5,7 @@
 // store answer in val computerSelection
 
 // use prompt() to ask for choice of player
-// store answer in val playerSelectio
+// store answer in val playerSelection
 
 // create playRound() function that takes playerSelection & computerSelection as as parameter
 // check if value of playerSelection won, lost or draw against computerSelection
@@ -34,24 +34,44 @@
 
 //Sub-Problem 3
 
-	function playRound(playerSelection, computerSelection)	{
-		let scoreComputer = 0;
-		let scorePlayer = 0;
+	function playRound()	{
 
-		playerSelection = getPlayerChoice();
-		computerSelection = getComputerChoice();
+		let playerSelection = getPlayerChoice();
+		let computerSelection = getComputerChoice();
 
-		console.log(playerSelection);
-		console.log(computerSelection);
-
+		playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+		
 		if(playerSelection === 'Paper' && computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper' || playerSelection === 'Rock' && computerSelection === 'Scissors' )	{
-			scorePlayer++;
-			console.log(`You won!!${playerSelection} beats ${computerSelection}.`);
+			console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
+			return 1;
 		}else if(playerSelection === computerSelection){
 			console.log('Draw. On to the next one.');
+			return 0;
 		} else	{
-			scoreComputer++;
-			console.log(`$You lost! ${playerSelection} lost against ${computerSelection}.`);
+			console.log(`You lost! ${playerSelection} lost against ${computerSelection}.`);
+			return -1;
+		}
+
+		// if player win return 1
+		// if draw return 0
+		// if lose return -1
+	}
+
+//Sub-Problem 4
+
+	function playGame()	{
+		let counter = 0;
+		let record = 0;
+		while (counter < 5){
+			record += playRound();
+			counter++;
+		}
+		if(record > 0)	{
+			console.log('You won! Congrats');
+		}else if(record === 0)	{
+			console.log('It is a draw');
+		}else	{
+			console.log('You lost. Try again!')
 		}
 	}
 
