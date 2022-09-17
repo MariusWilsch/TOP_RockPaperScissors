@@ -15,63 +15,80 @@
 // create function which loops playRound() for 5 times
 // after 5 times it takes the counter and returns a string which declares the winner
 
+
+// Global Vars
+
+let scorePlayer = 0;
+let scoreComp = 0;
+
+
 //Sub-Problem 1
 
 	function getComputerChoice()	{
 		let randomCounter = Math.floor(Math.random()*3);
-		// console.log(randomCounter);
 		const computerSelection = ['Rock', 'Paper', 'Scissors'];
-		// console.log(pool[randomCounter]);
 		return computerSelection[randomCounter];
 }
-
 //Sub-Problem 2
-
-	function getPlayerChoice()	{
-		let playerSelection = prompt('What is your Choice?', 'Put your choice here');
-		return playerSelection;
-	}
-
-//Sub-Problem 3
 
 	function playRound()	{
 
-		let playerSelection = getPlayerChoice();
 		let computerSelection = getComputerChoice();
 
-		playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+		// Results Div
+		const results = document.querySelector('#results');
+		const content = document.querySelector('#whoWon');
+
+		// Score Div
+		const score = document.querySelector('#score');
+		const playerScore = document.querySelector('#playerScore');
+		const computerScore = document.querySelector('#computerScore');
 		
+		// Logic
 		if(playerSelection === 'Paper' && computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper' || playerSelection === 'Rock' && computerSelection === 'Scissors' )	{
-			console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
-			return 1;
+			content.textContent = `You won! ${playerSelection} beats ${computerSelection}`;
+			scorePlayer++;
+			playerScore.textContent = `Player score is: ${scorePlayer}`;
+			playerScore.replaceWith(playerScore);
 		}else if(playerSelection === computerSelection){
-			console.log('Draw. On to the next one.');
-			return 0;
+			content.textContent = 'Draw. Next round!';
 		} else	{
-			console.log(`You lost! ${playerSelection} lost against ${computerSelection}.`);
-			return -1;
+			content.textContent = `You lost. ${playerSelection} lost against ${computerSelection}`;
+			scoreComp++;
+			computerScore.textContent = `Computer score is: ${scoreComp}`;
+			computerScore.replaceWith(computerScore);
 		}
+		results.appendChild(content);
 
-		// if player win return 1
-		// if draw return 0
-		// if lose return -1
+		// div main-container
+
+		let mainC = document.querySelector('#main-container');
+		let endP = document.createElement('p');
+
+		if (scorePlayer === 5)	{
+			endP.textContent = 'Well done, you have won!'
+			mainC.replaceWith(endP);
+			let a = document.createElement('a');
+			a.setAttribute('href', 'http://127.0.0.1:5500/index.html');
+			a.textContent = 'Go again';
+			document.getElementsByTagName('body')[0].appendChild(a);
+		} else if (scoreComp === 5)	{
+			endP.textContent = 'Well mate, this time you lost! Go again.'
+			mainC.replaceWith(endP);
+			let a = document.createElement('a');
+			a.setAttribute('href', 'http://127.0.0.1:5500/index.html');
+			a.textContent = 'Try again';
+			document.getElementsByTagName('body')[0].appendChild(a);
+		}
 	}
 
-//Sub-Problem 4
+	// Adding UI Stuff
 
-	function playGame()	{
-		let counter = 0;
-		let record = 0;
-		while (counter < 5){
-			record += playRound();
-			counter++;
-		}
-		if(record > 0)	{
-			console.log('You won! Congrats');
-		}else if(record === 0)	{
-			console.log('It is a draw');
-		}else	{
-			console.log('You lost. Try again!')
-		}
-	}
+	const buttons = document.querySelectorAll('button');
+	buttons.forEach((button) => {
+		button.addEventListener('click', () => {
+			playerSelection = button.textContent;
+			playRound();
+		});
+	});
 

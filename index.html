@@ -4,12 +4,31 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="./external.js" defer></script>
 		<title>Document</title>
 	</head>
 	<body>
-		<script src="./external.js"></script>
 
-		<!-- Finishing the steps within the problem-solving framework from TOP https://www.notion.so/Exercises-8ae3b0f1285f481a9501b33f4954ef50 -->
+		<div id="main-container">
+			<div class="btn-container">
+				<button id="btn-1">Rock</button>
+				<button id="btn-2">Paper</button>
+				<button id="btn-3">Scissors</button>
+			</div>
+			<div id="results">
+				<p id="whoWon"></p>
+			</div>
+			<div id="score">
+				<p id="playerScore">0</p>
+				<p id="computerScore">0</p>
+			</div>
+		</div>
+		
+
+	</body>
+</html>
+
+<!-- Finishing the steps within the problem-solving framework from TOP https://www.notion.so/Exercises-8ae3b0f1285f481a9501b33f4954ef50 -->
 
 		<!-- get random choice from the pool of Rock, Paper or Scissors
 		store answer in val computerSelection
@@ -24,7 +43,3 @@
 
 		create function which loops playRound() for 5 times
 		after 5 times it takes the counter and returns a string which declares the winner -->
-
-
-	</body>
-</html>
